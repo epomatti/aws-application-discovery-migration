@@ -47,6 +47,11 @@ ssh <your_user>@<ip_address>
 ```
 
 
+```
+aws discovery create-application --name UbuntuServer --region us-east-1
+aws discovery list-configurations --configuration-type SERVER --region us-east-1
+aws discovery associate-configuration-items-to-application --application-configuration-id <value> --configuration-ids <value> --region us-east-1
+
 ---
 
 ### Clean-up
