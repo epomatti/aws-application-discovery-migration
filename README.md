@@ -1,5 +1,11 @@
 # AWS Migration
 
+Migration exercise from Azure to AWS using Application Discovery Agent and Application Migration (MGN, previously SMS) Agent.
+
+<img src="migration-agent.png" width=700 />
+
+## Discovery
+
 ```sh
 account='<your_account_id>'
 
@@ -40,19 +46,30 @@ az group create -n 'rg-migration' -l 'brazilsouth'
 az vm create -n 'vm1' -g 'rg-migration' --image 'UbuntuLTS' --custom-data 'cloud-init.txt'
 ```
 
+The agent should automatically start collecting data. If not, troubleshoot to discover what might had gone wrong.
+
 You should be able to connect directly from your terminal with your standard key.
 
 ```sh
 ssh <your_user>@<ip_address>
 ```
+Organize your discovery into applications:
 
-
+```sh
+aws discovery create-application --name 'UbuntuServer' --region 'us-east-1'
+aws discovery list-configurations --configuration-type 'SERVER' --region 'us-east-1'
+aws discovery associate-configuration-items-to-application --application-configuration-id '<value>' --configuration-ids '<value>' --region 'us-east-1'
 ```
-aws discovery create-application --name UbuntuServer --region us-east-1
-aws discovery list-configurations --configuration-type SERVER --region us-east-1
-aws discovery associate-configuration-items-to-application --application-configuration-id <value> --configuration-ids <value> --region us-east-1
 
----
+Discovery process is complete.
+
+## Migration
+
+Navigate to the AWS Application Migration Service (MGN) and create a replication configuration template.
+
+Add a server to migration. Follow the Console procedure to add the **AWS Replication Agent**, which is a different product. The console will help you create user `mgn-agent-installer` and the roles required for it (`AWSApplicationMigrationAgentInstallationPolicy`).
+
+<img src="migration-agent.png" width=700 />
 
 ### Clean-up
 
