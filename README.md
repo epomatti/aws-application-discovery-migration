@@ -71,13 +71,16 @@ Add a server to migration. Follow the Console procedure to add the **AWS Replica
 
 <img src="migration-agent.png" width=700 />
 
-Replication should start immediately.
+Replication should start immediately and a snapshot should be created.
 
+Once complete you can launch test and finally cutover instances once tests are successful.
+
+<img src="migration-flow.png" width=700 />
 
 
 ### Clean-up
 
-Delete all of AWS resources, as well as the Azure resources.
+Delete all of AWS resources, snapshots, instances, as well as the Azure resources.
 
 ```sh
 az rg delete -n 'rg-migration' -l 'brazilsouth' -y
