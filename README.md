@@ -2,7 +2,7 @@
 
 Migration exercise from Azure to AWS using Application Discovery Agent and Application Migration (MGN, previously SMS) Agent.
 
-<img src="migration-agent.png" width=700 />
+<img src="migration.png" width=700 />
 
 ## Discovery
 
@@ -71,8 +71,14 @@ Add a server to migration. Follow the Console procedure to add the **AWS Replica
 
 <img src="migration-agent.png" width=700 />
 
+Replication should start immediately.
+
+
+
 ### Clean-up
 
+Delete all of AWS resources, as well as the Azure resources.
+
 ```sh
-az vm delete -n 'vm1' -g 'rg-migration' -y
+az rg delete -n 'rg-migration' -l 'brazilsouth' -y
 ```
