@@ -83,5 +83,5 @@ Once complete you can launch test and finally cutover instances once tests are s
 Delete all of AWS resources, snapshots, instances, as well as the Azure resources.
 
 ```sh
-az rg delete -n 'rg-migration' -l 'brazilsouth' -y
+az group delete -n 'rg-migration' -y
 ```
